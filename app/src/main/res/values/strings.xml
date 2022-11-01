@@ -1,0 +1,10 @@
+<resources>
+  <string name="app_name">M-Expense</string>
+  <string-array name="expense_type_arrays">
+    <item>Select an expense type</item>
+    <item>Food</item>
+    <item>Travel</item>
+    <item>Hotel</item>
+    <item>Other</item>
+  </string-array>
+</resources>

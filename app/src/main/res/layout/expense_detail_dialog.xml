@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:layout_margin="16dp">
+
+  <TextView
+    android:id="@+id/txtName2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:gravity="center"
+    android:text="EXPENSE DETAIL"
+    android:textSize="24sp"
+    android:textStyle="bold"
+/>
+
+  <TextView
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginEnd="20dp"
+    android:text=" Expense Type"
+    android:layout_below="@id/txtName2"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+
+  <EditText
+    android:id="@+id/inputType"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/text"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="Input Type"
+    android:imeOptions="actionNext"
+    android:inputType="text" />
+
+  <TextView
+    android:id="@+id/text1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/inputType"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:text=" Expense Time"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+
+  <EditText
+    android:id="@+id/inputTime"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/text1"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="Input Time"
+    android:imeOptions="actionNext"
+    android:inputType="date" />
+
+  <TextView
+    android:id="@+id/text2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/inputTime"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:text=" Expense Amount (VND)"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+
+  <EditText
+    android:id="@+id/inputAmount"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/text2"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="Input Amount"
+    android:imeOptions="actionNext"
+    android:inputType="number" />
+
+  <TextView
+    android:id="@+id/text3"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/inputAmount"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="20dp"
+    android:text=" Expense Comment"
+    android:textSize="18sp"
+    android:textStyle="bold" />
+
+  <EditText
+    android:id="@+id/inputComment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/text3"
+    android:layout_alignParentStart="true"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:hint="Input Comment"
+    android:imeOptions="actionNext" />
+
+</RelativeLayout>
