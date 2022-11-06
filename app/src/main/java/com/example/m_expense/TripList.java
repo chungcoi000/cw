@@ -34,7 +34,6 @@ public class TripList extends AppCompatActivity {
 
     DatabaseHelper dbHelper = new DatabaseHelper(this);
     tripEntities = (ArrayList<TripEntity>) dbHelper.getTrips();
-//    arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tripEntities);
     tripAdapter = new TripAdapter(this, R.layout.list_item, tripEntities);
 
     tripList = findViewById(R.id.tripListView);
@@ -75,6 +74,7 @@ public class TripList extends AppCompatActivity {
     intent.putExtra("destination", selectedTripEntity.getDestination());
     intent.putExtra("date", selectedTripEntity.getDate());
     intent.putExtra("duration", selectedTripEntity.getDuration());
+    intent.putExtra("contact", selectedTripEntity.getContact());
     intent.putExtra("risk", selectedTripEntity.getRisk());
     intent.putExtra("description", selectedTripEntity.getDescription());
     startActivity(intent);

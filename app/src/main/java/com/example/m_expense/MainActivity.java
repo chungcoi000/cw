@@ -27,7 +27,7 @@ import java.util.Calendar;
 import entities.TripEntity;
 
 public class MainActivity extends AppCompatActivity {
-  EditText inputName, inputDestination, inputDate, inputDescription, inputDuration;
+  EditText inputName, inputDestination, inputDate, inputDescription, inputDuration, inputContact;
   Button saveBtn, viewBtn;
 
   @Override
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     inputDate = findViewById(R.id.tripDate);
     inputDuration = findViewById(R.id.tripDuration);
     inputDescription = findViewById(R.id.tripDescription);
+    inputContact = findViewById(R.id.contact);
     RadioGroup radioGroup = findViewById(R.id.radioGroup2);
 
     inputDate.setOnFocusChangeListener((view, b) -> {
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
       String name = inputName.getText().toString();
       String destination = inputDestination.getText().toString();
       String date = inputDate.getText().toString();
+      String contact = inputContact.getText().toString();
       String duration = inputDuration.getText().toString();
       String description = inputDescription.getText().toString();
 
@@ -82,6 +84,11 @@ public class MainActivity extends AppCompatActivity {
         return;
       }
 
+      if (TextUtils.isEmpty(contact)) {
+        inputContact.setError("Contact is required!");
+        return;
+      }
+
       AlertDialog.Builder alert = new AlertDialog.Builder(this);
       alert.setIcon(android.R.drawable.ic_input_add);
       alert.setTitle("Confirm information");
@@ -93,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
       final TextView confirmDestination = dialog.findViewById(R.id.confirmDestination);
       final TextView confirmDate = dialog.findViewById(R.id.confirmDate);
       final TextView confirmDuration = dialog.findViewById(R.id.confirmDuration);
+      final TextView confirmContact = dialog.findViewById(R.id.confirmContact);
       final TextView confirmRisk = dialog.findViewById(R.id.confirmRisk);
       final TextView confirmDescription = dialog.findViewById(R.id.confirmDescription);
 
@@ -100,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
       confirmDestination.setText(String.format("Trip destination: %s", destination));
       confirmDate.setText(String.format("Trip date: %s", date));
       confirmDuration.setText(String.format("Trip duration: %s", duration));
+      confirmContact.setText(String.format("Trip contact: %s", contact));
       confirmRisk.setText(String.format("Trip risk: %s", risk));
       confirmDescription.setText(String.format("Trip description: %s", description));
 
@@ -108,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
       alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-          dbHelper.insertDetails(name, destination, date, duration, risk, description);
+          dbHelper.insertDetails(name, destination, date, duration, contact, risk, description);
           inputName.setText("");
           inputDate.setText("");
           inputDuration.setText("");

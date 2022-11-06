@@ -59,6 +59,14 @@ public class TripExpenseEntity {
     TripRisk = tripRisk;
   }
 
+  public String getTripContact() {
+    return tripContact;
+  }
+
+  public void setTripContact(String tripContact) {
+    this.tripContact = tripContact;
+  }
+
   public int getExpenseId() {
     return expenseId;
   }
@@ -111,6 +119,7 @@ public class TripExpenseEntity {
   protected String tripDate;
   protected String tripDuration;
   protected String TripDescription;
+  protected String tripContact;
   protected String TripRisk;
   private int expenseId;
   private String expenseType;

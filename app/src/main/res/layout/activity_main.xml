@@ -40,7 +40,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:orientation="horizontal"
     android:weightSum="2"
@@ -52,19 +52,20 @@
       android:id="@+id/textInput3"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:drawableStart="@drawable/ic_baseline_grade_24"
-      android:text="Trip Date"
       android:layout_weight="1"
+      android:drawableStart="@drawable/ic_baseline_grade_24"
       android:ems="10"
+      android:text="Trip Date"
       android:textSize="18sp"
       android:textStyle="bold" />
+
     <TextView
       android:id="@+id/textInput4"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_weight="1"
-      android:ems="10"
       android:drawableStart="@drawable/ic_baseline_grade_24"
+      android:ems="10"
       android:text="Trip Duration(days)"
       android:textSize="18sp"
       android:textStyle="bold" />
@@ -172,12 +173,26 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toBottomOf="@+id/tripDescription" />
 
+  <EditText
+    android:id="@+id/contact"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:ems="10"
+    android:hint="Input contact..."
+    android:inputType="number"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textInput8" />
+
   <TextView
     android:id="@+id/tripRisk"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:drawableStart="@drawable/ic_baseline_grade_24"
     android:text="Trip Risk"
@@ -186,14 +201,14 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintHorizontal_bias="0.34"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    app:layout_constraintTop_toBottomOf="@+id/contact" />
 
   <TextView
     android:id="@+id/textInput1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="24dp"
+    android:layout_marginTop="16dp"
     android:layout_marginEnd="16dp"
     android:drawableStart="@drawable/ic_baseline_grade_24"
     android:text="Trip Name"
@@ -209,7 +224,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:drawableStart="@drawable/ic_baseline_grade_24"
     android:text="Trip Destination"
@@ -221,11 +236,27 @@
     app:layout_constraintTop_toBottomOf="@+id/tripName" />
 
   <TextView
+    android:id="@+id/textInput8"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="16dp"
+    android:drawableStart="@drawable/ic_baseline_grade_24"
+    android:text="Contact"
+    android:textSize="18sp"
+    android:textStyle="bold"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.06"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+  <TextView
     android:id="@+id/textInput5"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="16dp"
+    android:layout_marginTop="8dp"
     android:layout_marginEnd="16dp"
     android:text="Trip Description"
     android:textSize="18sp"
@@ -240,13 +271,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="16dp"
-    android:layout_marginTop="28dp"
+    android:layout_marginTop="16dp"
     android:layout_marginEnd="16dp"
     android:gravity="center"
     android:text="ADD TRIP"
     android:textSize="24sp"
     android:textStyle="bold"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 

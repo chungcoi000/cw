@@ -25,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   public static final String TRIP_DESTINATION = "destination";
   public static final String TRIP_DATE = "date";
   public static final String TRIP_DURATION = "duration";
+  public static final String TRIP_CONTACT = "contact";
   public static final String TRIP_RISK = "risk";
   public static final String TRIP_DESCRIPTION = "description";
 
@@ -44,8 +45,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
       "   %s TEXT, " +
       "   %s TEXT, " +
       "   %s TEXT, " +
+      "   %s TEXT, " +
       "   %s TEXT)",
-    TABLE_TRIP, TRIP_ID, TRIP_NAME, TRIP_DATE, TRIP_DURATION, TRIP_DESTINATION, TRIP_RISK, TRIP_DESCRIPTION);
+    TABLE_TRIP, TRIP_ID, TRIP_NAME, TRIP_DATE, TRIP_DURATION, TRIP_DESTINATION, TRIP_CONTACT, TRIP_RISK, TRIP_DESCRIPTION);
 
   private static final String EXPENSE_TABLE_CREATE = String.format(
     "CREATE TABLE %s (" +
@@ -58,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     TABLE_EXPENSE, EXPENSE_ID, TRIP_ID, EXPENSE_TYPE, EXPENSE_AMOUNT, EXPENSE_TIME, EXPENSE_COMMENT);
 
   public DatabaseHelper(Context context) {
-    super(context, DATABASE_NAME, null, 3);
+    super(context, DATABASE_NAME, null, 4);
     database = getWritableDatabase();
   }
 
@@ -78,13 +80,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     onCreate(db);
   }
 
-  public long insertDetails(String name, String destination, String date, String duration, String risk, String description) {
+  public long insertDetails(String name, String destination, String date, String duration, String contact, String risk, String description) {
     ContentValues rowValues = new ContentValues();
 
     rowValues.put(TRIP_NAME, name);
     rowValues.put(TRIP_DESTINATION, destination);
     rowValues.put(TRIP_DATE, date);
     rowValues.put(TRIP_DURATION, duration);
+    rowValues.put(TRIP_CONTACT, contact);
     rowValues.put(TRIP_RISK, risk);
     rowValues.put(TRIP_DESCRIPTION, description);
 
@@ -101,6 +104,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     rowValues.put(EXPENSE_COMMENT, comment);
 
     return database.insertOrThrow(TABLE_EXPENSE, null, rowValues);
+  }
+
+  public long updateTrip(int tripId, String name, String destination, String date, String duration, String contact, String risk, String description) {
+    ContentValues rowValues = new ContentValues();
+
+    rowValues.put(TRIP_NAME, name);
+    rowValues.put(TRIP_DESTINATION, destination);
+    rowValues.put(TRIP_DATE, date);
+    rowValues.put(TRIP_DURATION, duration);
+    rowValues.put(TRIP_CONTACT, contact);
+    rowValues.put(TRIP_RISK, risk);
+    rowValues.put(TRIP_DESCRIPTION, description);
+
+    return database.update(TABLE_TRIP, rowValues, TRIP_ID + " = " + tripId, null);
   }
 
   public void deleteTrip(TripEntity tripEntity) {
@@ -162,7 +179,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
   }
 
   public List<TripEntity> getTrips() {
-    Cursor cursor = database.query(TABLE_TRIP, new String[]{TRIP_ID, TRIP_NAME, TRIP_DATE, TRIP_DURATION, TRIP_DESTINATION, TRIP_RISK, TRIP_DESCRIPTION},
+    Cursor cursor = database.query(TABLE_TRIP, new String[]{TRIP_ID, TRIP_NAME, TRIP_DATE, TRIP_DURATION, TRIP_DESTINATION, TRIP_CONTACT ,TRIP_RISK, TRIP_DESCRIPTION},
       null, null, null, null, TRIP_NAME);
 
     List<TripEntity> results = new ArrayList<TripEntity>();
@@ -174,10 +191,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
       String date = cursor.getString(2);
       String duration = cursor.getString(3);
       String destination = cursor.getString(4);
-      String risk = cursor.getString(5);
-      String description = cursor.getString(6);
+      String contact = cursor.getString(5);
+      String risk = cursor.getString(6);
+      String description = cursor.getString(7);
 
-      TripEntity tripEntity = new TripEntity(id, name, destination, date, duration, risk, description);
+      TripEntity tripEntity = new TripEntity(id, name, destination, date, duration, contact, risk, description);
       results.add(tripEntity);
 
       cursor.moveToNext();

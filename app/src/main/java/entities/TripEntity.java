@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 
 public class TripEntity {
 
-  public TripEntity(int trip_id, String name, String destination, String date, String duration, String risk, String description) {
+  public TripEntity(int trip_id, String name, String destination, String date, String duration, String contact, String risk, String description) {
     this.trip_id = trip_id;
     this.name = name;
     this.destination = destination;
     this.date = date;
     this.duration = duration;
     this.description = description;
+    this.contact = contact;
     this.risk = risk;
   }
 
@@ -62,6 +63,14 @@ public class TripEntity {
     this.risk = risk;
   }
 
+  public String getContact() {
+    return contact;
+  }
+
+  public void setContact(String contact) {
+    this.contact = contact;
+  }
+
   public String getDuration() {
     return duration;
   }
@@ -84,6 +93,7 @@ public class TripEntity {
   protected String name;
   protected String destination;
   protected String date;
+  protected String contact;
   protected String duration;
   protected String risk;
   protected String description;

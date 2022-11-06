@@ -36,11 +36,11 @@ import entities.TripExpenseEntity;
 public class TripDetail extends AppCompatActivity {
   final Context context = this;
   TextView textView;
-  EditText inputDestination, inputDate, inputRisk, inputDescription, inputDuration;
+  EditText inputDestination, inputDate, inputRisk, inputDescription, inputDuration, inputContact;
   ArrayList<TripExpenseEntity> tripExpenseEntities;
   TripExpenseAdapter tripExpenseAdapter;
   ListView expenseList;
-  Button viewExpenseBtn, addBtn;
+  Button viewExpenseBtn, addBtn, updateBtn;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class TripDetail extends AppCompatActivity {
     String destination = intent.getStringExtra("destination");
     String date = intent.getStringExtra("date");
     String duration = intent.getStringExtra("duration");
+    String contact = intent.getStringExtra("contact");
     String risk = intent.getStringExtra("risk");
     String description = intent.getStringExtra("description");
 
@@ -64,13 +65,23 @@ public class TripDetail extends AppCompatActivity {
     inputDestination = findViewById(R.id.inputDestination);
     inputDate = findViewById(R.id.inputDate);
     inputDuration = findViewById(R.id.inputDuration);
+    inputContact = findViewById(R.id.inputContact);
     inputRisk = findViewById(R.id.inputRisk);
     inputDescription = findViewById(R.id.inputDescription);
+
+    inputDate.setOnFocusChangeListener((view, b) -> {
+      if (b) {
+        TripDetail.MyDatePicker dlg = new TripDetail.MyDatePicker();
+        dlg.setExpense_time(inputDate);
+        dlg.show(getSupportFragmentManager(), "dateTimePicker");
+      }
+    });
 
     textView.setText(title);
     inputDestination.setText(destination);
     inputDate.setText(date);
     inputDuration.setText(duration);
+    inputContact.setText(contact);
     inputRisk.setText(risk);
     inputDescription.setText(description);
 
@@ -78,6 +89,38 @@ public class TripDetail extends AppCompatActivity {
     tripExpenseAdapter = new TripExpenseAdapter(this, R.layout.list_expense_item, tripExpenseEntities);
 
     expenseList = findViewById(R.id.expenseListView);
+
+    //update trip
+    updateBtn = findViewById(R.id.updateBtn);
+    updateBtn.setOnClickListener(view -> {
+      String trip_destination = inputDestination.getText().toString();
+      String trip_date = inputDate.getText().toString();
+      String trip_contact = inputContact.getText().toString();
+      String trip_duration = inputDuration.getText().toString();
+      String trip_description = inputDescription.getText().toString();
+
+      if (TextUtils.isEmpty(trip_destination)) {
+        inputDestination.setError("Trip destination is required!");
+        return;
+      }
+      if (TextUtils.isEmpty(trip_date)) {
+        inputDate.setError("Trip date is required!");
+        return;
+      }
+
+      if (TextUtils.isEmpty(trip_contact)) {
+        inputContact.setError("Trip contract is required!");
+        return;
+      }
+
+      if (TextUtils.isEmpty(trip_duration)) {
+        inputDuration.setError("Trip duration is required!");
+        return;
+      }
+
+      dbHelper.updateTrip(trip_id, name, trip_destination, trip_date, trip_duration, trip_contact, risk, trip_description);
+      Toast.makeText(this, "Update trip successfully!", Toast.LENGTH_LONG).show();
+    });
 
     // view list of expenses
     viewExpenseBtn = findViewById(R.id.viewExpenseBtn);
@@ -253,7 +296,8 @@ public class TripDetail extends AppCompatActivity {
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-      String dateValue = i2 + "/" + i1 + "/" + i;
+      int month = i1 + 1;
+      String dateValue = i2 + "/" + month + "/" + i;
       expense_time.setText(dateValue);
     }
   }
