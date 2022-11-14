@@ -80,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     onCreate(db);
   }
 
-  public long insertDetails(String name, String destination, String date, String duration, String contact, String risk, String description) {
+  public long insertTrips(String name, String destination, String date, String duration, String contact, String risk, String description) {
     ContentValues rowValues = new ContentValues();
 
     rowValues.put(TRIP_NAME, name);
@@ -132,18 +132,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase db = this.getWritableDatabase();
     String queryString = "DELETE FROM " + TABLE_EXPENSE + " WHERE " + EXPENSE_ID + " = " + tripExpenseEntity.getExpenseId();
     db.execSQL(queryString);
-  }
-
-  public Cursor searchTrips(String text) {
-    SQLiteDatabase db = this.getReadableDatabase();
-    String query = "SELECT * FROM " + TABLE_TRIP + " WHERE" + TRIP_NAME + " LIKE '%" + text + "%'";
-    Cursor cursor = db.rawQuery(query, null);
-
-    if (cursor != null) {
-      cursor.moveToFirst();
-    }
-
-    return cursor;
   }
 
   public List<TripExpenseEntity> getExpenses(int tripId) {

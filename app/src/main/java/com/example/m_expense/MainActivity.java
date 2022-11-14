@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
       alert.setPositiveButton("Save", new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-          dbHelper.insertDetails(name, destination, date, duration, contact, risk, description);
+          dbHelper.insertTrips(name, destination, date, duration, contact, risk, description);
           inputName.setText("");
           inputDate.setText("");
           inputDuration.setText("");

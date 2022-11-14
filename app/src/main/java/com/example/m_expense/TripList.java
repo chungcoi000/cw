@@ -23,7 +23,6 @@ import entities.TripEntity;
 
 public class TripList extends AppCompatActivity {
   ArrayList<TripEntity> tripEntities;
-  //  ArrayAdapter<TripEntity> arrayAdapter;
   ListView tripList;
   TripAdapter tripAdapter;
 
