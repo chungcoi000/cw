@@ -59,6 +59,8 @@ public class TripDetail extends AppCompatActivity {
 
     String title = name + " Trip detail";
 
+    Toast.makeText(this, "ok" + trip_id, Toast.LENGTH_SHORT).show();
+
     DatabaseHelper dbHelper = new DatabaseHelper(this);
 
     textView = findViewById(R.id.viewTripName);

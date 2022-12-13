@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
           inputName.setText("");
           inputDate.setText("");
           inputDuration.setText("");
+          inputContact.setText("");
           inputDestination.setText("");
           radioGroup.clearCheck();
           radioGroup.check(R.id.radioButton2);
